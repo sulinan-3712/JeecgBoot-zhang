@@ -32,6 +32,7 @@ public class JeecgSystemApplication extends SpringBootServletInitializer {
     }
 
     public static void main(String[] args) throws UnknownHostException {
+        log.info("JeecgSystemApplication start");
         SpringApplication app = new SpringApplication(JeecgSystemApplication.class);
         Map<String, Object> defaultProperties = new HashMap<>();
         defaultProperties.put("management.health.elasticsearch.enabled", false);

@@ -53,7 +53,7 @@ spring:
     jdbc:
       initialize-schema: embedded
     #定时任务启动开关，true-开  false-关
-    auto-startup: true
+    auto-startup: false
     #延迟1秒启动定时任务
     startup-delay: 1s
     #启动时更新己存在的Job
@@ -153,7 +153,7 @@ spring:
         master:
           url: jdbc:mysql://127.0.0.1:3306/jeecg-boot?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
           username: root
-          password: root
+          password: ZY200122zy!
           driver-class-name: com.mysql.cj.jdbc.Driver
 #        # shardingjdbc数据源
 #        sharding-db:
