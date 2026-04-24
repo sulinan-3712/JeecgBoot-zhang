@@ -1,22 +1,28 @@
 <template>
   <div v-show="getShow" class="login-form-shell enter-x">
     <div class="login-head">
-      <AppLogo :alwaysShowTitle="false" class="login-logo" />
+      <img src="/@/assets/images/su.png" alt="logo" class="login-avatar" />
       <h2 class="login-title">Welcome Back</h2>
       <p class="login-sub-title">登录到 sulinan 平台</p>
     </div>
 
     <Form class="login-form" :model="formData" :rules="getFormRules" ref="formRef" @keypress.enter="handleLogin">
       <FormItem name="account" class="form-item">
-        <Input v-model:value="formData.account" :placeholder="t('sys.login.userName')" class="glass-input fix-auto-fill" />
+        <Input v-model:value="formData.account" :placeholder="t('sys.login.userName')" class="glass-input fix-auto-fill">
+          <template #prefix><UserOutlined class="input-prefix-icon" /></template>
+        </Input>
       </FormItem>
       <FormItem name="password" class="form-item">
-        <InputPassword visibilityToggle v-model:value="formData.password" :placeholder="t('sys.login.password')" class="glass-input" />
+        <InputPassword visibilityToggle v-model:value="formData.password" :placeholder="t('sys.login.password')" class="glass-input">
+          <template #prefix><LockOutlined class="input-prefix-icon" /></template>
+        </InputPassword>
       </FormItem>
 
       <div class="captcha-row">
         <FormItem name="inputCode" class="form-item captcha-input-item">
-          <Input v-model:value="formData.inputCode" :placeholder="t('sys.login.inputCode')" class="glass-input" />
+          <Input v-model:value="formData.inputCode" :placeholder="t('sys.login.inputCode')" class="glass-input">
+            <template #prefix><SafetyCertificateOutlined class="input-prefix-icon" /></template>
+          </Input>
         </FormItem>
         <div class="captcha-image-wrap" @click="handleChangeCheckCode">
           <img v-if="randCodeData.requestCodeSuccess" class="captcha-image" :src="randCodeData.randCodeImage" />
@@ -70,8 +76,7 @@
   import { reactive, ref, toRaw, unref, computed, onMounted } from 'vue';
 
   import { Checkbox, Form, Input, Button, Divider } from 'ant-design-vue';
-  import { GithubFilled, WechatFilled, DingtalkCircleFilled } from '@ant-design/icons-vue';
-  import { AppLogo } from '/@/components/Application';
+  import { GithubFilled, WechatFilled, DingtalkCircleFilled, UserOutlined, LockOutlined, SafetyCertificateOutlined } from '@ant-design/icons-vue';
   import ThirdModal from './ThirdModal.vue';
   import { useI18n } from '/@/hooks/web/useI18n';
   import { useMessage } from '/@/hooks/web/useMessage';
@@ -181,23 +186,28 @@
     text-align: center;
   }
 
-  .login-logo {
-    display: inline-flex;
-    height: 40px;
+  .login-avatar {
+    width: 104px;
+    height: 104px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid rgb(255 255 255 / 30%);
+    box-shadow: 0 8px 24px rgb(15 23 42 / 45%);
   }
 
   .login-title {
-    margin: 16px 0 8px;
-    font-size: 32px;
+    margin: 14px 0 6px;
+    font-size: 40px;
     font-weight: 600;
     line-height: 1.2;
-    color: #1f2a37;
+    color: #e5eefc;
+    letter-spacing: 0.3px;
   }
 
   .login-sub-title {
     margin: 0;
     font-size: 14px;
-    color: #6b7280;
+    color: rgb(203 213 225 / 72%);
   }
 
   .login-form {
@@ -212,9 +222,10 @@
   :deep(.glass-input .ant-input),
   :deep(.glass-input.ant-input-affix-wrapper) {
     height: 48px;
-    border: 1px solid #e5e7eb;
+    color: #e2e8f0;
+    border: 1px solid rgb(148 163 184 / 28%);
     border-radius: 12px;
-    background: rgb(255 255 255 / 90%);
+    background: rgb(15 23 42 / 48%);
     transition: all 0.2s ease;
   }
 
@@ -224,13 +235,41 @@
     border-radius: 0;
     background: transparent;
     box-shadow: none;
+    color: #fff;
+    -webkit-text-fill-color: #fff;
+  }
+
+  :deep(.glass-input.ant-input) {
+    color: #fff;
+    -webkit-text-fill-color: #fff;
+  }
+
+  :deep(.glass-input.ant-input-affix-wrapper input) {
+    color: #fff;
+    -webkit-text-fill-color: #fff;
+  }
+
+  :deep(.glass-input .ant-input::placeholder) {
+    color: rgb(148 163 184 / 75%);
+  }
+
+  :deep(.glass-input.ant-input-affix-wrapper .ant-input-password-icon) {
+    color: rgb(148 163 184 / 80%);
+  }
+
+  :deep(.glass-input .ant-input-prefix) {
+    color: rgb(148 163 184 / 85%);
   }
 
   :deep(.glass-input.ant-input:focus),
   :deep(.glass-input.ant-input-affix-wrapper-focused),
   :deep(.glass-input.ant-input-affix-wrapper:focus-within) {
     border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgb(59 130 246 / 20%);
+    box-shadow: 0 0 0 3px rgb(59 130 246 / 18%);
+  }
+
+  .input-prefix-icon {
+    font-size: 14px;
   }
 
   .captcha-row {
@@ -248,9 +287,9 @@
     height: 48px;
     overflow: hidden;
     cursor: pointer;
-    border: 1px solid #e5e7eb;
+    border: 1px solid rgb(148 163 184 / 26%);
     border-radius: 12px;
-    background: #fff;
+    background: rgb(15 23 42 / 58%);
   }
 
   .captcha-image {
@@ -266,13 +305,13 @@
     margin-top: 16px;
     margin-bottom: 24px;
     font-size: 12px;
-    color: #6b7280;
+    color: rgb(203 213 225 / 75%);
   }
 
   .forget-link {
     padding-right: 0;
     font-size: 12px;
-    color: #6b7280;
+    color: rgb(203 213 225 / 75%);
   }
 
   .login-submit-item {
@@ -301,7 +340,7 @@
   .other-login-divider {
     margin: 16px 0;
     font-size: 12px;
-    color: #6b7280;
+    color: rgb(203 213 225 / 72%);
   }
 
   .register-entry-item {
@@ -310,16 +349,16 @@
 
   .register-entry-btn {
     height: 44px;
-    border: 1px solid #e5e7eb;
+    border: 1px solid rgb(148 163 184 / 30%);
     border-radius: 12px;
-    background: rgb(255 255 255 / 75%);
-    color: #4b5563;
+    background: rgb(15 23 42 / 42%);
+    color: rgb(226 232 240 / 95%);
   }
 
   .register-entry-btn:hover {
-    border-color: #93c5fd;
-    color: #1d4ed8;
-    background: #eff6ff;
+    border-color: rgb(96 165 250 / 65%);
+    color: #dbeafe;
+    background: rgb(30 41 59 / 70%);
   }
 
   .third-login-row {
@@ -334,17 +373,26 @@
     justify-content: center;
     gap: 6px;
     height: 40px;
-    border: 1px solid #e5e7eb;
+    border: 1px solid rgb(148 163 184 / 26%);
     border-radius: 10px;
-    background: #fff;
-    color: #6b7280;
+    background: rgb(15 23 42 / 42%);
+    color: rgb(203 213 225 / 85%);
     cursor: pointer;
     transition: all 0.2s ease;
   }
 
   .third-login-btn:hover {
-    background: #f9fafb;
-    color: #111827;
+    background: rgb(30 41 59 / 75%);
+    color: #f8fafc;
+  }
+
+  :deep(.ant-checkbox-wrapper) {
+    color: rgb(203 213 225 / 85%);
+  }
+
+  :deep(.ant-divider::before),
+  :deep(.ant-divider::after) {
+    border-top-color: rgb(148 163 184 / 24%);
   }
 
   @keyframes login-btn-press {

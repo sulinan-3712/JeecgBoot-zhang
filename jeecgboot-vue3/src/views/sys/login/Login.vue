@@ -64,11 +64,11 @@
       width: min(420px, calc(100vw - 32px));
       min-height: 520px;
       padding: 0;
-      border: 1px solid rgb(255 255 255 / 40%);
+      border: 1px solid rgb(148 163 184 / 28%);
       border-radius: 20px;
-      backdrop-filter: blur(20px);
-      background: rgb(255 255 255 / 85%);
-      box-shadow: 0 20px 60px rgb(0 0 0 / 20%);
+      backdrop-filter: blur(18px);
+      background: linear-gradient(170deg, rgb(24 39 66 / 72%), rgb(11 20 38 / 78%));
+      box-shadow: 0 24px 70px rgb(2 8 23 / 58%), inset 0 1px 0 rgb(255 255 255 / 12%);
       animation: login-card-enter 0.5s ease-out both;
     }
 
@@ -81,8 +81,8 @@
   html[data-theme='dark'] {
     .@{prefix-cls} {
       .login-glass-card {
-        border-color: rgb(148 163 184 / 35%);
-        background: rgb(15 23 42 / 72%);
+        border-color: rgb(148 163 184 / 30%);
+        background: linear-gradient(170deg, rgb(24 39 66 / 75%), rgb(11 20 38 / 82%));
       }
     }
   }

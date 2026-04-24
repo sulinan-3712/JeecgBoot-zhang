@@ -1,14 +1,14 @@
 <template>
-  <Form class="p-4 enter-x" :model="formData" :rules="getFormRules" ref="formRef">
-    <FormItem name="mobile" class="enter-x">
-      <Input size="large" v-model:value="formData.mobile" :placeholder="t('sys.login.mobile')" />
+  <Form class="forget-form enter-x" :model="formData" :rules="getFormRules" ref="formRef">
+    <FormItem name="mobile" class="form-item enter-x">
+      <Input size="large" v-model:value="formData.mobile" :placeholder="t('sys.login.mobile')" class="glass-input" />
     </FormItem>
-    <FormItem name="sms" class="enter-x">
-      <CountdownInput size="large" v-model:value="formData.sms" :placeholder="t('sys.login.smsCode')" :sendCodeApi="sendCodeApi" />
+    <FormItem name="sms" class="form-item enter-x">
+      <CountdownInput size="large" v-model:value="formData.sms" :placeholder="t('sys.login.smsCode')" :sendCodeApi="sendCodeApi" class="glass-input" />
     </FormItem>
-    <FormItem class="enter-x">
-      <Button type="primary" size="large" block @click="handleNext" :loading="loading"> 下一步 </Button>
-      <Button size="large" block class="mt-4" @click="handleBackLogin">
+    <FormItem class="form-item enter-x">
+      <Button type="primary" size="large" block @click="handleNext" :loading="loading" class="forget-submit-btn"> 下一步 </Button>
+      <Button size="large" block class="mt-4 forget-back-btn" @click="handleBackLogin">
         {{ t('sys.login.backSignIn') }}
       </Button>
     </FormItem>
@@ -94,3 +94,55 @@
     },
   });
 </script>
+
+<style lang="less" scoped>
+  .forget-form {
+    padding: 0;
+  }
+
+  .form-item {
+    margin-bottom: 16px;
+  }
+
+  :deep(.glass-input.ant-input),
+  :deep(.glass-input .ant-input),
+  :deep(.glass-input .@{namespace}-countdown-input) {
+    height: 48px;
+    color: #fff;
+    border: 1px solid rgb(148 163 184 / 28%);
+    border-radius: 12px;
+    background: rgb(15 23 42 / 48%);
+  }
+
+  :deep(.glass-input .ant-input) {
+    color: #fff;
+    -webkit-text-fill-color: #fff;
+  }
+
+  :deep(.glass-input .ant-input::placeholder) {
+    color: rgb(148 163 184 / 75%);
+  }
+
+  :deep(.glass-input.ant-input:focus),
+  :deep(.glass-input .@{namespace}-countdown-input:focus-within) {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgb(59 130 246 / 18%);
+  }
+
+  .forget-submit-btn {
+    height: 48px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .forget-back-btn {
+    height: 44px;
+    border: 1px solid rgb(148 163 184 / 30%);
+    border-radius: 12px;
+    background: rgb(15 23 42 / 42%);
+    color: rgb(226 232 240 / 95%);
+  }
+</style>

@@ -1,7 +1,7 @@
 <template>
-  <Result status="success" title="更改密码成功" :sub-title="getSubTitle">
+  <Result class="forget-result" status="success" title="更改密码成功" :sub-title="getSubTitle">
     <template #extra>
-      <a-button key="console" type="primary" @click="finish"> 返回登录 </a-button>
+      <a-button key="console" type="primary" class="forget-finish-btn" @click="finish"> 返回登录 </a-button>
     </template>
   </Result>
 </template>
@@ -69,3 +69,30 @@
     },
   });
 </script>
+
+<style lang="less" scoped>
+  .forget-result {
+    margin-top: 8px;
+  }
+
+  :deep(.forget-result .ant-result-title) {
+    color: #e5eefc;
+  }
+
+  :deep(.forget-result .ant-result-subtitle) {
+    color: rgb(203 213 225 / 75%);
+  }
+
+  :deep(.forget-result .ant-result-icon .anticon) {
+    color: #22c55e;
+  }
+
+  .forget-finish-btn {
+    height: 44px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    font-size: 15px;
+    font-weight: 500;
+  }
+</style>

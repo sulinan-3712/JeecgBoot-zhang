@@ -2,6 +2,7 @@
   <ConfigProvider :theme="appTheme" :locale="getAntdLocale">
     <AppProvider>
       <RouterView />
+      <AppMascot />
     </AppProvider>
   </ConfigProvider>
 </template>
@@ -11,6 +12,7 @@
   import { theme } from 'ant-design-vue';
   import { ConfigProvider } from 'ant-design-vue';
   import { AppProvider } from '/@/components/Application';
+  import AppMascot from '/@/components/Application/src/AppMascot.vue';
   import { useTitle } from '/@/hooks/web/useTitle';
   import { useLocale } from '/@/locales/useLocale';
   import { useAppStore } from '/@/store/modules/app';
@@ -97,7 +99,6 @@
   setTimeout(() => {
     appStore.getProjectConfig?.themeColor && changeTheme(appStore.getProjectConfig.themeColor);
   }, 300);
-
 </script>
 <style lang="less">
   // 代码逻辑说明: 【QQYUN-5839】windi会影响到html2canvas绘制的图片样式

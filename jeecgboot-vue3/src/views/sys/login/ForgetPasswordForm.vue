@@ -1,16 +1,16 @@
 <template>
   <template v-if="getShow">
-    <!--节点-->
-    <a-steps style="margin-bottom: 20px" :current="currentTab">
-      <a-step title="手机验证" />
-      <a-step title="更改密码" />
-      <a-step title="完成" />
-    </a-steps>
-    <!--组件-->
-    <div>
-      <step1 v-if="currentTab === 0" @nextStep="nextStep" />
-      <step2 v-if="currentTab === 1" @nextStep="nextStep" @prevStep="prevStep" :accountInfo="accountInfo" />
-      <step3 v-if="currentTab === 2" @prevStep="prevStep" @finish="finish" />
+    <div class="forget-shell enter-x">
+      <a-steps class="forget-steps" :current="currentTab">
+        <a-step title="手机验证" />
+        <a-step title="更改密码" />
+        <a-step title="完成" />
+      </a-steps>
+      <div>
+        <step1 v-if="currentTab === 0" @nextStep="nextStep" />
+        <step2 v-if="currentTab === 1" @nextStep="nextStep" @prevStep="prevStep" :accountInfo="accountInfo" />
+        <step3 v-if="currentTab === 2" @prevStep="prevStep" @finish="finish" />
+      </div>
     </div>
   </template>
 </template>
@@ -66,3 +66,31 @@
     currentTab.value = 0;
   }
 </script>
+
+<style lang="less" scoped>
+  .forget-shell {
+    padding: 40px 40px 28px;
+  }
+
+  .forget-steps {
+    margin-bottom: 24px;
+  }
+
+  :deep(.forget-steps .ant-steps-item-title) {
+    color: rgb(203 213 225 / 88%) !important;
+  }
+
+  :deep(.forget-steps .ant-steps-item-description) {
+    color: rgb(148 163 184 / 75%);
+  }
+
+  :deep(.forget-steps .ant-steps-item-process .ant-steps-item-title) {
+    color: #e5eefc !important;
+  }
+
+  :deep(.forget-steps .ant-steps-item-wait .ant-steps-item-icon),
+  :deep(.forget-steps .ant-steps-item-finish .ant-steps-item-icon) {
+    background: rgb(15 23 42 / 55%);
+    border-color: rgb(148 163 184 / 28%);
+  }
+</style>
